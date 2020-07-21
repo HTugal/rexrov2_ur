@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="ur_arm_gazebo" params="prefix">
+
+	<!-- Enable the Joint Feedback (HT: without this part FT=0)  -->
+    <gazebo reference="${prefix}wrist_3_joint">
+    	<provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <!-- Enable the Joint Feedback for the force sensor Test HT -->
+    <gazebo reference="ft_joint_ee">
+    	  <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <!-- The ft_sensor plugin Not: works with <jointName>${prefix}wrist_3_joint</jointName> -->
+    <gazebo>
+    	<plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        	<updateRate>125.0</updateRate>
+          	<topicName>/netft_gazebo_data</topicName>
+          	<jointName>ft_joint_ee</jointName> 
+        </plugin>
+    </gazebo> 
+
+    <gazebo reference="${prefix}shoulder_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}upper_arm_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}forearm_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_1_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_3_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_2_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}ee_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+
+  </xacro:macro>
+
+
+</robot>

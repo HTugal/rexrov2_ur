@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="ur3" >
+
+  <xacro:arg name="sensor_l"   default="0.10"/>
+  <xacro:arg name="tool_l"     default="0.14"/>
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff: ros control plugin -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur3 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur3T.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur3_robot prefix="" joint_limited="false"
+    transmission_hw_interface="$(arg transmission_hw_interface)" sensor_l="$(arg sensor_l)" tool_l="$(arg tool_l)"
+  />
+
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0 0 0" rpy="0.0 0.0 ${-pi}" /> <!-- To aling base frame with robot frame -->
+  </joint>
+
+
+</robot>
