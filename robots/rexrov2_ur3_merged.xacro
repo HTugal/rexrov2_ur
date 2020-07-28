@@ -48,8 +48,8 @@
 
   <!-- UR arm rpy="0 0 ${-pi}" INCLUDED TO ALIGN BASE COORDINATE FRAME OF THE REAL ROBOT WITH THE ON IN THE SIM-->
   <xacro:ur3_robot parent="$(arg namespace)/base_link" prefix="" joint_limited="false" transmission_hw_interface="$(arg transmission_hw_interface)" tool_l="$(arg tool_l)">
-    <origin xyz="1.28 0 -0.73" rpy="0 0 ${-pi}"/> mounted in the front 
-<!--    <origin xyz="0 0.9 -0.73" rpy="0 0 ${-pi}"/>-->
+<!--    <origin xyz="1.28 0 -0.73" rpy="0 0 ${-pi}"/> mounted in the front -->
+    <origin xyz="0 0.9 -0.73" rpy="0 0 ${-pi}"/>
   </xacro:ur3_robot>
 
    <gazebo>
